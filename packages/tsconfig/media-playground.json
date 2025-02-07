@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Media Playground",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "noEmit": true
+  }
+}

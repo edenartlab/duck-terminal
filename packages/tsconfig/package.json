@@ -1,0 +1,12 @@
+{
+  "name": "@edenlabs/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "api.json",
+    "eden-sdk.json",
+    "garden.json"
+  ]
+}
