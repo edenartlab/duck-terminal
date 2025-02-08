@@ -108,7 +108,7 @@ export const createCursorPaginationRoute = (
     params.nextValue = query.nextValue
   }
 
-  const filters = []
+  const filters: Array<{ [key: string]: any }> = []
 
   // console.log(query.userId, query.orderBy)
 

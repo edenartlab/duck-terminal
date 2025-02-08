@@ -15,7 +15,7 @@ export default function Custom404() {
               </h2>
               <div className="mx-auto max-w-[528px] mb-5 md:mb-6 lg:mb-8">
                 <p className="text-[#636262] max-[479px]:text-sm">
-                  Oops! 🌿 Looks like you're an adventurous spirit. You've
+                  Oops! 🌿 Looks like you&apos;re an adventurous spirit. You&apos;ve
                   wandered off the path and ended up in the Forbidden Orchard 🍎
                 </p>
               </div>
