@@ -36,7 +36,8 @@ const ThreadHistory: FC = () => {
 					</div>
 					<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
 						{histories.map((entry, index) => (
-							<div 
+							entry.filename ? (
+								<div 
 								key={index} 
 								className="relative group rounded-lg overflow-hidden border border-green-400/30 hover:border-green-400 transition-colors"
 							>
@@ -51,6 +52,7 @@ const ThreadHistory: FC = () => {
 									<p className="text-sm truncate">{entry.prompt.toString()}</p>
 								</div>
 							</div>
+							) : (<></>)
 						))}
 					</div>
 				</div>
