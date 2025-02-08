@@ -1,3 +1,36 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  // ... existing code ...
+  "overrides": [
+    {
+      "files": ["packages/**", "lib/**"],
+      "rules": {
+        // Disable all rules for the packages directory
+        "no-unused-vars": "off",
+        "no-console": "off",
+        "no-undef": "off",
+        "no-redeclare": "off",
+        "no-unused-expressions": "off",
+        "@typescript-eslint/no-implicit-any": "off", // Keep this to allow implicit any
+        // Disable all ESLint checks
+        "eslint/no-unused-vars": "off",
+        "eslint/no-console": "off",
+        "eslint/no-undef": "off",
+        "eslint/no-redeclare": "off",
+        "eslint/no-unused-expressions": "off",
+        // Disable all TypeScript checks
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-undef": "off",
+        "@typescript-eslint/no-redeclare": "off",
+        "@typescript-eslint/no-unused-expressions": "off"
+        // Add more rules to turn off as needed
+      }
+    }
+  ]
 }

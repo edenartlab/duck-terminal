@@ -13559,6 +13559,7 @@ __metadata:
     sass: "npm:^1.79.4"
     sharp: "npm:^0.32.1"
     slugify: "npm:^1.6.6"
+    some-library: "npm:^1.0.0"
     sonner: "npm:^1.5.0"
     storybook: "npm:^8.0.8"
     storybook-addon-pseudo-states: "npm:^3.0.1"
@@ -17820,6 +17821,13 @@ __metadata:
     ip-address: "npm:^9.0.5"
     smart-buffer: "npm:^4.2.0"
   checksum: 10c0/d54a52bf9325165770b674a67241143a3d8b4e4c8884560c4e0e078aace2a728dffc7f70150660f51b85797c4e1a3b82f9b7aa25e0a0ceae1a243365da5c51a7
+  languageName: node
+  linkType: hard
+
+"some-library@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "some-library@npm:1.0.0"
+  checksum: 10c0/96e7e47aad51db0b7c99d5aafeca4974a0339fee11b214599c7e9069dad6a368c6b93075629b6ab28362aa8b95d71a878f05b361ada1304df7492b20d946eab2
   languageName: node
   linkType: hard
 

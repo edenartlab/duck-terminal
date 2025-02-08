@@ -12,6 +12,9 @@ import { TaskV2Result, TaskV2Status, ToolV2 } from '@edenlabs/eden-sdk'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 
+// Define ReadonlyJSONValue if not found in any library
+type ReadonlyJSONValue = string | number | boolean | null | { readonly [key: string]: ReadonlyJSONValue } | ReadonlyJSONValue[];
+
 export type TaskResultToolArgs = {
   // result: {
   tool: ToolV2['key']
@@ -22,7 +25,7 @@ export type TaskResultToolArgs = {
 }
 
 export const TaskResultTool = makeAssistantToolUI<
-  TaskResultToolArgs,
+  TaskResultToolArgs & { result: ReadonlyJSONValue }, // Updated type constraint
   TaskResultToolArgs
 >({
   toolName: 'task_result',

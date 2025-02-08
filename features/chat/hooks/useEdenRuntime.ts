@@ -112,6 +112,7 @@ export const useEdenRuntime = ({
             threadId: thread._id,
             title: thread.title,
             state: 'regular',
+            status: 'regular', // Change status from 'active' to 'regular'
           })),
           onSwitchToNewThread: !onSwitchToNewThread
             ? undefined

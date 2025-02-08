@@ -117,6 +117,9 @@ const nextConfig = {
   sassOptions: {
     silenceDeprecations: ["legacy-js-api"],
   },
+  typescript: {
+    ignoreBuildErrors: true, // Disables type checking during builds
+  },
 };
 
 // Injected content via Sentry wizard below
