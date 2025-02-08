@@ -120,25 +120,25 @@ const nextConfig = {
 };
 
 // Injected content via Sentry wizard below
-if (process.env.NODE_ENV !== "development") {
-  const { withSentryConfig } = await import("@sentry/nextjs");
-  Object.assign(
-    nextConfig,
-    withSentryConfig(nextConfig, {
-      org: "edenlabs",
-      project: "eden2-frontend",
-      silent: !process.env.CI,
-      widenClientFileUpload: true,
-      reactComponentAnnotation: {
-        enabled: true,
-      },
-      tunnelRoute: "/monitoring",
-      hideSourceMaps: true,
-      disableLogger: true,
-      automaticVercelMonitors: false,
-    })
-  );
-}
+// if (process.env.NODE_ENV !== "development") {
+//   const { withSentryConfig } = await import("@sentry/nextjs");
+//   Object.assign(
+//     nextConfig,
+//     withSentryConfig(nextConfig, {
+//       org: "edenlabs",
+//       project: "eden2-frontend",
+//       silent: !process.env.CI,
+//       widenClientFileUpload: true,
+//       reactComponentAnnotation: {
+//         enabled: true,
+//       },
+//       tunnelRoute: "/monitoring",
+//       hideSourceMaps: true,
+//       disableLogger: true,
+//       automaticVercelMonitors: false,
+//     })
+//   );
+// }
 
 export default {
   ...nextConfig,
