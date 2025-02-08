@@ -23,14 +23,14 @@ export default function GlobalError({
               <h2 className="font-bold mb-4 text-2xl md:text-4xl">Error</h2>
               <div className="mx-auto max-w-[528px] mb-5 md:mb-6 lg:mb-8">
                 <p className="text-[#636262] max-[479px]:text-sm">
-                  Oops! 🌿 Looks like our server's gone rogue. You've stumbled
+                  Oops! 🌿 Looks like our server&apos;s gone rogue. You&apos;ve stumbled
                   into the Orchard of Technical Difficulties 🍎.
                   <br />
-                  Don't worry, though; even in the wilds of server issues, your
+                  Don&apos;t worry, though; even in the wilds of server issues, your
                   adventurous spirit shines bright.
                   <br />
                   <br />
-                  We're working tirelessly to restore the garden to its pristine
+                  We&apos;re working tirelessly to restore the garden to its pristine
                   state.
                 </p>
               </div>

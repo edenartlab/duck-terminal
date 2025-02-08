@@ -5,7 +5,7 @@ import { FieldValues, UseFormReturn } from 'react-hook-form'
 interface FormPersistProps<T extends FieldValues> {
   form: UseFormReturn<T>
   formKey: string
-  defaultValues: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  defaultValues: unknown
   resetKey: number
 }
 
