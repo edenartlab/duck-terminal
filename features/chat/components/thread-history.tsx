@@ -10,8 +10,8 @@ import { getCloudfrontOriginalUrl } from '@/lib/media'
 import { TextContentPart, ImageContentPart, Unstable_AudioContentPart, UIContentPart, ToolCallContentPart } from '@assistant-ui/react'
 
 const isToolCallContentPart = (
-	part: TextContentPart | ImageContentPart | Unstable_AudioContentPart | UIContentPart | ToolCallContentPart<Record<string | number, unknown>, unknown>
-  ): part is ToolCallContentPart<Record<string | number, unknown>, unknown> => part.type === "tool-call";
+  part: TextContentPart | ImageContentPart | Unstable_AudioContentPart | UIContentPart | ToolCallContentPart<Record<string, any>, unknown> // Changed from unknown to any
+): part is ToolCallContentPart<Record<string, any>, unknown> => part.type === "tool-call";
 
 const ThreadHistory: FC = () => {
 	const allMessages = useThread((m) => m.messages)
