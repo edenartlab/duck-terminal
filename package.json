@@ -145,5 +145,6 @@
     "typescript": "^5",
     "vite": "^4.3.5",
     "vitest": "^0.32.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }
