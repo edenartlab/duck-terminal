@@ -7,13 +7,13 @@ import { handleConnectWallet } from '@/lib/thirdweb/utils'
 import { ConnectEmbed } from 'thirdweb/react'
 import { useTheme } from 'next-themes'
 import { checkAuth } from '@/lib/actions/thirdweb'
-import { baseSepolia } from 'thirdweb/chains'
+import { base } from 'thirdweb/chains'
 import { factoryAddress } from '@/lib/thirdweb/config'
 const SignInThemed = () => {
   const router = useRouter()
   const { updateAuthState } = useAuth()
   const { theme } = useTheme()
-  const chain = baseSepolia
+  const chain = base
   const thirdwebTheme = theme === 'dark' || theme === 'light' ? theme : undefined
   return (
     <ConnectEmbed

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { getContract, sendAndConfirmTransaction } from 'thirdweb';
 import { transfer } from 'thirdweb/extensions/erc20';
 import { client, duckTokenAddress, recipientAddress } from '@/lib/thirdweb/config';
-import { baseSepolia } from 'thirdweb/chains';
+import { base } from 'thirdweb/chains';
 import { useAuth } from '@/contexts/auth-context'
 import { getBalanceHandler } from '@/lib/thirdweb/utils'
 import { useActiveWallet } from "thirdweb/react";
@@ -13,7 +13,7 @@ export const useEdenDuck = () => {
   const wallet = useActiveWallet()
   const { userId } = useAuth()
   const account = wallet?.getAccount()
-  const chain = baseSepolia
+  const chain = base
   const { updateAuthState } = useAuth()
   const [isWithdrawing, setIsWithdrawing] = useState(false)
   const withdrawAmount = 1
