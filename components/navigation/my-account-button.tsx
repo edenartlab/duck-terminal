@@ -40,7 +40,7 @@ import {
 import Link from 'next/link'
 import * as React from 'react'
 import { forwardRef, useRef, useState } from 'react'
-import { baseSepolia } from 'thirdweb/chains'
+import { base } from 'thirdweb/chains'
 import { useWalletDetailsModal } from 'thirdweb/react'
 import { chains, factoryAddress, duckTokenAddress } from '@/lib/thirdweb/config'
 
@@ -303,7 +303,7 @@ const LoginButton = () => {
   const router = useRouter()
   const { updateAuthState } = useAuth()
   const { theme } = useTheme()
-  const chain = baseSepolia
+  const chain = base
   const thirdwebTheme = theme === 'dark' || theme === 'light' ? theme : undefined
   return (
     <>

@@ -63,6 +63,6 @@ export const wallets: Wallet[] = [
   createWallet('io.rabby'),
   createWallet('io.zerion.wallet'),
 ];
-export const duckTokenAddress ="0xE67451E0Cbcb1fC0ce4641214E71bFF7cB40F598" //"0x9dB6729394fdD35Ab78903dC59e2441D1f66583C";//
-export const recipientAddress = "0x64BCeB1Ee3375CD52D3F608DfEbDE1e49424693c";
-export const factoryAddress = "0x93D58E6FD93db03c911CA3a730ff9Cf4fdBD5948";
+export const duckTokenAddress ="0xe70B3FC80e7f73918742971C6D0F2ed9a73dd11A" 
+export const recipientAddress = "0xEb8dC1922F92bfAB23b3136b7b10F757BE499D7C"
+export const factoryAddress = "0x85e23b94e7F5E9cC1fF78BCe78cfb15B81f0DF00"

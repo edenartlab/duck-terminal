@@ -11,13 +11,13 @@ import { client, chains, duckTokenAddress } from '@/lib/thirdweb/config'
 import { useWalletDetailsModal } from 'thirdweb/react'
 import { useActiveWallet } from 'thirdweb/react'
 import { useTheme } from 'next-themes'
-import { baseSepolia } from 'thirdweb/chains'
+import { base } from 'thirdweb/chains'
 import { useAuth } from '@/contexts/auth-context'
 
 
 const ActiveChainIcon = () => {
   const wallet = useActiveWallet()
-  const chain = baseSepolia
+  const chain = base
   const { isSignedIn } = useAuth()
   const detailsModal = useWalletDetailsModal();
   const { theme } = useTheme()
