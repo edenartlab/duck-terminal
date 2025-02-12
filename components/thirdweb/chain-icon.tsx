@@ -39,7 +39,7 @@ const ActiveChainIcon = () => {
                     // hideSwitchWallet: true,
                     chains,
                     supportedTokens: {
-                      84532: [
+                      8453: [
                         {
                           address: duckTokenAddress,
                           name: "DuckToken",

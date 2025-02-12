@@ -11,10 +11,6 @@ export const chains = [
     id: 8453,
     rpc: `https://8453.rpc.thirdweb.com/${process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}`,
   },
-  {
-    id: 84532,
-    rpc: `https://84532.rpc.thirdweb.com/${process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}`,
-  },
 ]
 
 export const chainData = [

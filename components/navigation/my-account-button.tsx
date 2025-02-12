@@ -171,10 +171,9 @@ const AccountDropdown = () => {
                 connectedAccountAvatarUrl: "https://res.cloudinary.com/dqnbi6ctf/image/upload/v1736328514/eden_piplmq.png",
                 hideDisconnect: true,
                 hideSwitchWallet: true,
-                // hideBuyFunds: true,
                 chains,
                 supportedTokens: {
-                  84532: [
+                  8453: [
                     {
                       address: duckTokenAddress,
                       name: "DuckToken",
@@ -183,7 +182,6 @@ const AccountDropdown = () => {
                     },
                   ],
                 },
-                footer: () => <div>custom-footer</div>,
               });
             }
           }}
