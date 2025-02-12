@@ -44,7 +44,7 @@ const navItemsTrain: NavLinkProps[] = [
 const navItemsEve: NavLinkProps[] = [
   {
     label: 'Eve',
-    segments: [`chat/eve`],
+    segments: [`duck/eve`],
   },
 ]
 

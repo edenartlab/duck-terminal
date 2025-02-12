@@ -122,7 +122,7 @@ const AgentDetail = ({ id, agentSSRData }: Props) => {
               <Share2Icon size={18} />
             </Button>
             <Button variant="secondary" asChild>
-              <Link href={`/chat/${agent._id}`}>
+              <Link href={`/duck/${agent._id}`}>
                 <ChatBubbleIcon className="mr-2 h-4 w-4" />
                 Start Chat
               </Link>

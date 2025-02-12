@@ -153,9 +153,9 @@ export const useEdenRuntime = ({
               window.history.pushState(
                 null,
                 '',
-                `/chat/${agentId}/${newThreadId}`,
+                `/duck/${agentId}/${newThreadId}`,
               )
-            // router.push(`/chat/${agentId}/${newThreadId}`)
+            // router.push(`/duck/${agentId}/${newThreadId}`)
             setTimeout(async () => {
               console.log('invalidated threadlist')
               await invalidate()
