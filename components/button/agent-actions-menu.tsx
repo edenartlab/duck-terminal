@@ -60,7 +60,7 @@ const AgentActionsMenu = ({ agent, queryKey, className }: Props) => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href={`/chat/${agent.username}`} className="cursor-pointer">
+              <Link href={`/duck/${agent.username}`} className="cursor-pointer">
                 <ChatBubbleIcon className="mr-2 h-4 w-4" />
                 Chat
               </Link>
