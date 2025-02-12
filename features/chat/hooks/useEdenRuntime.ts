@@ -7,6 +7,7 @@ import {
 import { useEdenMessages } from '@/features/chat/hooks/useEdenMessages'
 import { useThreadListQuery } from '@/hooks/query/use-thread-list-query'
 import { useAuthState } from '@/hooks/use-auth-state'
+import { useAuth } from '@/contexts/auth-context'
 import {
   CompositeAttachmentAdapter,
   TextContentPart,
@@ -64,10 +65,17 @@ export const useEdenRuntime = ({
     }
   }, [])
 
+  const { balance } = useAuth()
+
   const handleSendMessage = async (
     messages: EdenMessage[],
     callback?: (thread_id?: string) => Promise<void>,
   ) => {
+    if (balance < 1) {
+      console.log('Insufficient balance')
+      alert('Insufficient balance. Please top up your account.');
+      return
+    }
     try {
       console.log('handleSendMessage start')
       setIsRunning(true)
