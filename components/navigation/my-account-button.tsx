@@ -1,31 +1,34 @@
-'use client'
+"use client";
 
-import { useRouter } from 'next/navigation'
-import RedeemVoucherForm from '@/components/form/redeem-voucher-form'
-import DiscordIcon from '@/components/icons/discord'
-import TwitterIcon from '@/components/icons/twitter'
-import DialogMenuItem from '@/components/modal/dialog-menu-item'
-import { ThemeToggle } from '@/components/theme-toggle'
-import { Button } from '@/components/ui/button'
-import LoadingIndicator from '@/components/loading-indicator'
+import { useRouter } from "next/navigation";
+import RedeemVoucherForm from "@/components/form/redeem-voucher-form";
+import DiscordIcon from "@/components/icons/discord";
+import TwitterIcon from "@/components/icons/twitter";
+import DialogMenuItem from "@/components/modal/dialog-menu-item";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import LoadingIndicator from "@/components/loading-indicator";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import UserAvatar from '@/components/user/user-avatar'
-import { useMe } from '@/hooks/use-me'
-import { useAuth } from "@/contexts/auth-context"
-import { siteConfig } from '@/lib/config'
-import { subscriptionTierNameMap } from '@/lib/strings'
-import { client, wallets } from "@/lib/thirdweb/config"
-import { handleConnectWallet, handleDisconnectWallet } from '@/lib/thirdweb/utils'
-import { checkAuth } from '@/lib/actions/thirdweb'
-import { useTheme } from 'next-themes'
-import { SubscriptionTier } from '@edenlabs/eden-sdk'
-import { useDisconnect, useActiveWallet, ConnectButton } from 'thirdweb/react'
+} from "@/components/ui/dropdown-menu";
+import UserAvatar from "@/components/user/user-avatar";
+import { useMe } from "@/hooks/use-me";
+import { useAuth } from "@/contexts/auth-context";
+import { siteConfig } from "@/lib/config";
+import { subscriptionTierNameMap } from "@/lib/strings";
+import { client, wallets } from "@/lib/thirdweb/config";
+import {
+  handleConnectWallet,
+  handleDisconnectWallet,
+} from "@/lib/thirdweb/utils";
+//import { checkAuth } from '@/lib/actions/thirdweb'
+import { useTheme } from "next-themes";
+import { SubscriptionTier } from "@edenlabs/eden-sdk";
+import { useDisconnect, useActiveWallet, ConnectButton } from "thirdweb/react";
 import {
   BookmarkIcon,
   BotIcon,
@@ -35,56 +38,63 @@ import {
   SettingsIcon,
   TicketIcon,
   UserIcon,
-  Wallet
-} from 'lucide-react'
-import Link from 'next/link'
-import * as React from 'react'
-import { forwardRef, useRef, useState } from 'react'
-import { base } from 'thirdweb/chains'
-import { useWalletDetailsModal } from 'thirdweb/react'
-import { chains, factoryAddress, duckTokenAddress } from '@/lib/thirdweb/config'
+  Wallet,
+} from "lucide-react";
+import Link from "next/link";
+import * as React from "react";
+import { forwardRef, useRef, useState } from "react";
+import { base } from "thirdweb/chains";
+import { useWalletDetailsModal } from "thirdweb/react";
+import {
+  chains,
+  factoryAddress,
+  duckTokenAddress,
+} from "@/lib/thirdweb/config";
+import SignInAlt from "@/components/auth/sign-in-alt";
+import { Sign } from "crypto";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const ThemeToggleForwardWrap = forwardRef<HTMLDivElement>(
   ({ ...rest }, ref) => (
     <div ref={ref} className="w-full">
-      <ThemeToggle {...rest} label={'Theme'} />
+      <ThemeToggle {...rest} label={"Theme"} />
     </div>
-  ),
-)
-ThemeToggleForwardWrap.displayName = 'ThemeToggleForwardWrap'
+  )
+);
+ThemeToggleForwardWrap.displayName = "ThemeToggleForwardWrap";
 
 const AccountDropdown = () => {
-  const router = useRouter()
-  const { isSignedIn, updateAuthState } = useAuth()
-  const { disconnect } = useDisconnect()
-  const wallet = useActiveWallet()
+  const router = useRouter();
+  const { isSignedIn, updateAuthState } = useAuth();
+  const { disconnect } = useDisconnect();
+  const wallet = useActiveWallet();
   const detailsModal = useWalletDetailsModal();
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   const { user, balance } = useMe({
     isAuthenticated: !!isSignedIn,
-  })
-  const userId = user?.userId
+  });
+  const userId = user?.userId;
 
   const logout = async () => {
-    if (wallet) disconnect(wallet)
-    await handleDisconnectWallet()
-    updateAuthState({ isSignedIn: false, userId: '', isLoaded: false });
-    router.push('/sign-in')
-  }
+    if (wallet) disconnect(wallet);
+    await handleDisconnectWallet();
+    updateAuthState({ isSignedIn: false, userId: "", isLoaded: false });
+    router.push("/sign-in");
+  };
 
-  const [dropdownOpen, setDropdownOpen] = useState(false)
-  const [hasOpenDialog, setHasOpenDialog] = useState(false)
-  const dropdownTriggerRef = useRef<HTMLButtonElement | null>(null)
-  const focusRef = useRef<HTMLButtonElement | null>(null)
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [hasOpenDialog, setHasOpenDialog] = useState(false);
+  const dropdownTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const focusRef = useRef<HTMLButtonElement | null>(null);
 
   function handleDialogItemSelect() {
-    focusRef.current = dropdownTriggerRef.current
+    focusRef.current = dropdownTriggerRef.current;
   }
 
   function handleDialogItemOpenChange(open: boolean) {
-    setHasOpenDialog(open)
+    setHasOpenDialog(open);
     if (!open) {
-      setDropdownOpen(false)
+      setDropdownOpen(false);
     }
   }
 
@@ -109,11 +119,11 @@ const AccountDropdown = () => {
         align="end"
         className="w-60"
         hidden={hasOpenDialog}
-        onCloseAutoFocus={event => {
+        onCloseAutoFocus={(event) => {
           if (focusRef.current) {
-            (focusRef.current as HTMLButtonElement).focus()
-            focusRef.current = null
-            event.preventDefault()
+            (focusRef.current as HTMLButtonElement).focus();
+            focusRef.current = null;
+            event.preventDefault();
           }
         }}
       >
@@ -129,8 +139,9 @@ const AccountDropdown = () => {
             />
             <div className="flex flex-col justify-center min-w-0">
               <div className="group-hover:text-primary text-xs transition-colors">
-                {user?.username ? `${user.username.slice(0, 4)}...${user.username.slice(-4)}` : ''}
-
+                {user?.username
+                  ? `${user.username.slice(0, 4)}...${user.username.slice(-4)}`
+                  : ""}
               </div>
               {user?.email ? (
                 <span className="text-xs text-muted-foreground/70 truncate">
@@ -143,14 +154,14 @@ const AccountDropdown = () => {
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer" asChild>
           <Link
-            href={'/settings/subscription'}
+            href={"/settings/subscription"}
             className="flex items-center justify-between w-full"
           >
             <div className="capitalize text-xs">
               <span>
                 {
                   subscriptionTierNameMap[
-                  user?.subscriptionTier || SubscriptionTier.Free
+                    user?.subscriptionTier || SubscriptionTier.Free
                   ]
                 }
               </span>
@@ -168,7 +179,8 @@ const AccountDropdown = () => {
               detailsModal.open({
                 client,
                 theme: theme as "light" | "dark",
-                connectedAccountAvatarUrl: "https://res.cloudinary.com/dqnbi6ctf/image/upload/v1736328514/eden_piplmq.png",
+                connectedAccountAvatarUrl:
+                  "https://res.cloudinary.com/dqnbi6ctf/image/upload/v1736328514/eden_piplmq.png",
                 hideDisconnect: true,
                 hideSwitchWallet: true,
                 chains,
@@ -178,7 +190,7 @@ const AccountDropdown = () => {
                       address: duckTokenAddress,
                       name: "DuckToken",
                       symbol: "DUCK",
-                      icon: 'https://res.cloudinary.com/dqnbi6ctf/image/upload/v1737522933/mechanical_duck_rqoik0.webp',
+                      icon: "https://res.cloudinary.com/dqnbi6ctf/image/upload/v1737522933/mechanical_duck_rqoik0.webp",
                     },
                   ],
                 },
@@ -186,11 +198,11 @@ const AccountDropdown = () => {
             }
           }}
         >
-          <div
-            className="group flex gap-2 items-center cursor-pointer "
-          >
-            <Wallet className='h-4 w-4' />
-            <span>{userId ? `${userId.slice(0, 4)}...${userId.slice(-4)}` : ''}</span>
+          <div className="group flex gap-2 items-center cursor-pointer ">
+            <Wallet className="h-4 w-4" />
+            <span>
+              {userId ? `${userId.slice(0, 4)}...${userId.slice(-4)}` : ""}
+            </span>
           </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -268,7 +280,7 @@ const AccountDropdown = () => {
             </Link>
 
             <div className="ml-auto flex gap-1">
-              <Button variant="ghost" size={'icon'} asChild>
+              <Button variant="ghost" size={"icon"} asChild>
                 <Link
                   href={siteConfig.links.discord}
                   target="_blank"
@@ -277,7 +289,7 @@ const AccountDropdown = () => {
                   <DiscordIcon size={20} />
                 </Link>
               </Button>
-              <Button variant="ghost" size={'icon'} asChild>
+              <Button variant="ghost" size={"icon"} asChild>
                 <Link
                   href={siteConfig.links.twitter}
                   target="_blank"
@@ -294,18 +306,19 @@ const AccountDropdown = () => {
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
 
 const LoginButton = () => {
-  const router = useRouter()
-  const { updateAuthState } = useAuth()
-  const { theme } = useTheme()
-  const chain = base
-  const thirdwebTheme = theme === 'dark' || theme === 'light' ? theme : undefined
+  const router = useRouter();
+  const { updateAuthState, isSignedIn, isLoaded } = useAuth();
+  const { theme } = useTheme();
+  const chain = base;
+  const thirdwebTheme =
+    theme === "dark" || theme === "light" ? theme : undefined;
   return (
     <>
-      <ConnectButton
+      {/*<ConnectButton
         client={client}
         wallets={wallets}
         theme={thirdwebTheme}
@@ -336,21 +349,23 @@ const LoginButton = () => {
             router.push('/duck')
           }
         }}
-      />
+      />*/}
+      <Dialog>
+        <DialogTrigger>
+          <Button>Login</Button>{" "}
+          {/*Todo: show Loading Indicator as auth awaits*/}
+        </DialogTrigger>
+        <DialogContent className="max-w-md custom-dialog">
+          {" "}
+          <SignInAlt />
+        </DialogContent>
+      </Dialog>
     </>
-  )
-}
+  );
+};
 const MyAccountButton = () => {
-  const { isSignedIn } = useAuth()
-  return (
-    <>
-      {isSignedIn ?
-        <AccountDropdown />
-        :
-        <LoginButton />
-      }
-    </>
-  )
-}
+  const { isSignedIn } = useAuth();
+  return <>{isSignedIn ? <AccountDropdown /> : <LoginButton />}</>;
+};
 
-export default MyAccountButton
+export default MyAccountButton;
