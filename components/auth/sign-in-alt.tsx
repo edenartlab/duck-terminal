@@ -16,17 +16,20 @@ import { checkAuth } from "@/lib/actions/thirdweb";
 import { handleConnectWallet } from "@/lib/thirdweb/utils";
 // Import Shadcn UI Tabs components (adjust the import path as needed)
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import LoadingIndicator from "@/components/loading-indicator";
 
 export default function SignInDual() {
   const router = useRouter();
   const { updateAuthState } = useAuth();
   const { theme } = useTheme();
   const [showTabs, setShowTabs] = useState(true);
+  const [loadingAuth, setLoadingAuth] = useState(false);
   const thirdwebTheme =
     theme === "dark" || theme === "light" ? theme : undefined;
 
   useEffect(() => {
     setShowTabs(true);
+    setLoadingAuth(false);
   }, []);
 
   // Social login props: enable accountAbstraction so that the inApp wallet becomes a smart account.
@@ -47,11 +50,13 @@ export default function SignInDual() {
   const onConnectHandler = async (wallet: any) => {
     const { isSignedIn } = await checkAuth();
     setShowTabs(false);
+    setLoadingAuth(true);
     if (!isSignedIn) {
       const result = await handleConnectWallet(wallet);
       if (!result) return;
       const { isSignedIn: justSignedIn, userId } = result;
       updateAuthState({ isSignedIn: justSignedIn, userId, isLoaded: true });
+      setLoadingAuth(false);
       router.push("/duck");
     }
   };
@@ -94,6 +99,11 @@ export default function SignInDual() {
           />
         </TabsContent>
       </Tabs>
+      {loadingAuth && (
+        <div className="flex items-center justify-center">
+          <LoadingIndicator />
+        </div>
+      )}
     </div>
   );
 }
