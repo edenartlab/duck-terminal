@@ -25,7 +25,7 @@ const SignInThemed = () => {
       theme={thirdwebTheme}
       chain={chain}
       /**
-       * Important: We do NOT pass accountAbstraction here,
+       * We do NOT pass accountAbstraction here,
        * so external wallets (like Metamask) remain normal EOAs.
        */
       onConnect={async (wallet) => {

@@ -25,7 +25,7 @@ import {
   handleConnectWallet,
   handleDisconnectWallet,
 } from "@/lib/thirdweb/utils";
-//import { checkAuth } from '@/lib/actions/thirdweb'
+import { checkAuth } from "@/lib/actions/thirdweb";
 import { useTheme } from "next-themes";
 import { SubscriptionTier } from "@edenlabs/eden-sdk";
 import { useDisconnect, useActiveWallet, ConnectButton } from "thirdweb/react";
@@ -50,9 +50,9 @@ import {
   factoryAddress,
   duckTokenAddress,
 } from "@/lib/thirdweb/config";
-import SignInAlt from "@/components/auth/sign-in-alt";
+//import SignInAlt from "@/components/auth/sign-in-alt";
 import { Sign } from "crypto";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+//import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const ThemeToggleForwardWrap = forwardRef<HTMLDivElement>(
   ({ ...rest }, ref) => (
@@ -318,48 +318,50 @@ const LoginButton = () => {
     theme === "dark" || theme === "light" ? theme : undefined;
   return (
     <>
-      {/*<ConnectButton
+      <ConnectButton
         client={client}
         wallets={wallets}
         theme={thirdwebTheme}
+        /**
         accountAbstraction={{
           factoryAddress,
           sponsorGas: true,
           chain: chain,
         }}
+        */
         chain={chain}
         connectModal={{
-          size: "wide"
+          size: "wide",
         }}
         connectButton={{
           style: {
             minWidth: "69px",
             height: "40px",
           },
-          label: "Login"
+          label: "Login",
         }}
         detailsButton={{
-          render: () => <LoadingIndicator />
+          render: () => <LoadingIndicator />,
         }}
         onConnect={async (wallet) => {
-          const { isSignedIn } = await checkAuth()
+          const { isSignedIn } = await checkAuth();
           if (!isSignedIn) {
-            const result = await handleConnectWallet(wallet)
+            const result = await handleConnectWallet(wallet);
             updateAuthState({ ...result, isLoaded: true });
-            router.push('/duck')
+            router.push("/duck");
           }
         }}
-      />*/}
-      <Dialog>
+      />
+      {/*<Dialog>
         <DialogTrigger>
           <Button>Login</Button>{" "}
-          {/*Todo: show Loading Indicator as auth awaits*/}
         </DialogTrigger>
         <DialogContent className="max-w-md custom-dialog">
           {" "}
           <SignInAlt />
         </DialogContent>
-      </Dialog>
+      </Dialog> 
+      */}
     </>
   );
 };
