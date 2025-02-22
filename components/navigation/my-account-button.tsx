@@ -45,14 +45,7 @@ import * as React from "react";
 import { forwardRef, useRef, useState } from "react";
 import { base } from "thirdweb/chains";
 import { useWalletDetailsModal } from "thirdweb/react";
-import {
-  chains,
-  factoryAddress,
-  duckTokenAddress,
-} from "@/lib/thirdweb/config";
-//import SignInAlt from "@/components/auth/sign-in-alt";
-import { Sign } from "crypto";
-//import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { chains, duckTokenAddress } from "@/lib/thirdweb/config";
 
 const ThemeToggleForwardWrap = forwardRef<HTMLDivElement>(
   ({ ...rest }, ref) => (
@@ -352,16 +345,6 @@ const LoginButton = () => {
           }
         }}
       />
-      {/*<Dialog>
-        <DialogTrigger>
-          <Button>Login</Button>{" "}
-        </DialogTrigger>
-        <DialogContent className="max-w-md custom-dialog">
-          {" "}
-          <SignInAlt />
-        </DialogContent>
-      </Dialog> 
-      */}
     </>
   );
 };
