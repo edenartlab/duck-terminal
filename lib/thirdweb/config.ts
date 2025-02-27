@@ -7,7 +7,7 @@ const clientId = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID!;
 export const client = createThirdwebClient({ clientId });
 export const chain = {
   id: 8453,
-  rpc: `https://8453.rpc.thirdweb.com`,
+  rpc: "https://mainnet.base.org", // `https://8453.rpc.thirdweb.com/${clientId}`
 };
 
 export const chainData = [
