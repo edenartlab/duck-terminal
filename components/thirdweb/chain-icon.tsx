@@ -7,17 +7,15 @@ import {
 } from '@/components/ui/dropdown-menu'
 import React from 'react'
 import { ChainProvider, ChainIcon } from 'thirdweb/react'
-import { client, chains, duckTokenAddress } from '@/lib/thirdweb/config'
+import { client, chain, duckTokenAddress } from '@/lib/thirdweb/config'
 import { useWalletDetailsModal } from 'thirdweb/react'
 import { useActiveWallet } from 'thirdweb/react'
 import { useTheme } from 'next-themes'
-import { base } from 'thirdweb/chains'
 import { useAuth } from '@/contexts/auth-context'
 
 
 const ActiveChainIcon = () => {
   const wallet = useActiveWallet()
-  const chain = base
   const { isSignedIn } = useAuth()
   const detailsModal = useWalletDetailsModal();
   const { theme } = useTheme()
@@ -37,7 +35,7 @@ const ActiveChainIcon = () => {
                     hideDisconnect: true,
                     hideBuyFunds: true,
                     // hideSwitchWallet: true,
-                    chains,
+                    chains: [chain],
                     supportedTokens: {
                       8453: [
                         {

@@ -43,9 +43,8 @@ import {
 import Link from "next/link";
 import * as React from "react";
 import { forwardRef, useRef, useState } from "react";
-import { base } from "thirdweb/chains";
 import { useWalletDetailsModal } from "thirdweb/react";
-import { chains, duckTokenAddress } from "@/lib/thirdweb/config";
+import { chain, duckTokenAddress } from "@/lib/thirdweb/config";
 
 const ThemeToggleForwardWrap = forwardRef<HTMLDivElement>(
   ({ ...rest }, ref) => (
@@ -176,7 +175,7 @@ const AccountDropdown = () => {
                   "https://res.cloudinary.com/dqnbi6ctf/image/upload/v1736328514/eden_piplmq.png",
                 hideDisconnect: true,
                 hideSwitchWallet: true,
-                chains,
+                chains: [chain],
                 supportedTokens: {
                   8453: [
                     {
@@ -306,7 +305,6 @@ const LoginButton = () => {
   const router = useRouter();
   const { updateAuthState, isSignedIn, isLoaded } = useAuth();
   const { theme } = useTheme();
-  const chain = base;
   const thirdwebTheme =
     theme === "dark" || theme === "light" ? theme : undefined;
   return (

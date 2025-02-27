@@ -2,18 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/auth-context";
-import { client, wallets } from "@/lib/thirdweb/config";
+import { client, wallets, chain } from "@/lib/thirdweb/config";
 import { handleConnectWallet } from "@/lib/thirdweb/utils";
 import { ConnectEmbed } from "thirdweb/react";
 import { useTheme } from "next-themes";
 import { checkAuth } from "@/lib/actions/thirdweb";
-import { base } from "thirdweb/chains";
 
 const SignInThemed = () => {
   const router = useRouter();
   const { updateAuthState } = useAuth();
   const { theme } = useTheme();
-  const chain = base;
   const thirdwebTheme =
     theme === "dark" || theme === "light" ? theme : undefined;
 

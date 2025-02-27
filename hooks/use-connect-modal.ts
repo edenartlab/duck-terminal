@@ -3,25 +3,23 @@ import { client, wallets } from "@/lib/thirdweb/config"
 import { handleConnectWallet } from "@/lib/thirdweb/utils";
 import { useAuth } from "@/contexts/auth-context";
 import { useTheme } from 'next-themes'
-import { base } from "thirdweb/chains";
-import { factoryAddress } from '@/lib/thirdweb/config'
+import { chain, factoryAddress } from '@/lib/thirdweb/config'
 import { redirect } from "next/navigation";
 
 export function useLoginModal() {
   const { connect, isConnecting } = useConnectModal();
   const { updateAuthState } = useAuth();
-  const chain = base
   const { theme } = useTheme()
   const thirdwebTheme = theme === 'dark' || theme === 'light' ? theme : undefined
   async function connectWallet() {
     const wallet = await connect({
       wallets,
       client,
-      accountAbstraction: {
-        factoryAddress,
-        sponsorGas: true,
-        chain: chain,
-      },
+      // accountAbstraction: {
+      //   factoryAddress,
+      //   sponsorGas: true,
+      //   chain: chain,
+      // },
       chain: chain,
       size: "wide",
       theme: thirdwebTheme

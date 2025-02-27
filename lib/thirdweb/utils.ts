@@ -1,16 +1,14 @@
 import { signLoginPayload } from "thirdweb/auth";
 import { Wallet } from "thirdweb/wallets";
 import { genPayload, login, logout } from "@/lib/actions/thirdweb";
-import { base } from "thirdweb/chains";
 import { getBalance } from "thirdweb/extensions/erc20";
-import { duckTokenAddress } from "@/lib/thirdweb/config";
+import { chain, duckTokenAddress } from "@/lib/thirdweb/config";
 import { getContract } from "thirdweb";
 import { client } from "@/lib/thirdweb/config";
 
 
 export const handleConnectWallet = async (wallet: Wallet) => {
   const account = wallet.getAccount();
-  const chain = base
 
   if (!account) {
     alert("Please connect your wallet");
@@ -63,7 +61,7 @@ export const getBalanceHandler = async (address: string) => {
   const duckTokenContract = getContract({
     client,
     address: duckTokenAddress,
-    chain: base,
+    chain,
   })
   const balance = await getBalance({ contract: duckTokenContract, address: address })
   return convertBalance(balance.value, balance.decimals)

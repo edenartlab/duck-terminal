@@ -3,14 +3,12 @@ import { createWallet, inAppWallet, Wallet } from "thirdweb/wallets";
 import { base } from "thirdweb/chains";
 
 const clientId = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID!;
-export const factoryAddress = "0x85e23b94e7F5E9cC1fF78BCe78cfb15B81f0DF00";
+
 export const client = createThirdwebClient({ clientId });
-export const chains = [
-  {
-    id: 8453,
-    rpc: `https://8453.rpc.thirdweb.com/${process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}`,
-  },
-];
+export const chain = {
+  id: 8453,
+  rpc: `https://8453.rpc.thirdweb.com`,
+};
 
 export const chainData = [
   {
@@ -39,6 +37,11 @@ export const chainData = [
     ],
   },
 ];
+
+export const duckTokenAddress = "0xe70B3FC80e7f73918742971C6D0F2ed9a73dd11A";
+export const recipientAddress = "0xEb8dC1922F92bfAB23b3136b7b10F757BE499D7C";
+export const factoryAddress = "0x85e23b94e7F5E9cC1fF78BCe78cfb15B81f0DF00";
+
 export const wallets: Wallet[] = [
   inAppWallet({
     auth: {
@@ -81,6 +84,3 @@ export const wallets: Wallet[] = [
   createWallet("io.rabby"),
   createWallet("io.zerion.wallet"),
 ];
-
-export const duckTokenAddress = "0xe70B3FC80e7f73918742971C6D0F2ed9a73dd11A";
-export const recipientAddress = "0xEb8dC1922F92bfAB23b3136b7b10F757BE499D7C";
