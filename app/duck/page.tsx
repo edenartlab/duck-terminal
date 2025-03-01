@@ -1,7 +1,7 @@
-import DuckChat from '@/features/chat/duck-chat'
+import DuckChat from "@/features/chat/duck-chat";
 
 const DuckPage = () => {
-  return <DuckChat agentId={'eve'} />
-}
+  return <DuckChat agentId={"eve"} />;
+};
 
-export default DuckPage
+export default DuckPage;
