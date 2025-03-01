@@ -12,7 +12,6 @@ import { useAuth } from "@/contexts/auth-context";
 function levenshteinDistance(a: string, b: string): number {
   const dp: number[][] = [];
 
-  // Initialize dp matrix
   for (let i = 0; i <= a.length; i++) {
     dp[i] = [];
     for (let j = 0; j <= b.length; j++) {
@@ -20,7 +19,6 @@ function levenshteinDistance(a: string, b: string): number {
     }
   }
 
-  // Base cases: transforming from empty string
   for (let i = 0; i <= a.length; i++) {
     dp[i][0] = i;
   }
@@ -30,12 +28,11 @@ function levenshteinDistance(a: string, b: string): number {
 
   for (let i = 1; i <= a.length; i++) {
     for (let j = 1; j <= b.length; j++) {
-      // If characters are the same, cost is 0; if not, treat substitution as 2 edits.
-      const cost = a[i - 1] === b[j - 1] ? 0 : 2;
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
       dp[i][j] = Math.min(
         dp[i - 1][j] + 1, // deletion
         dp[i][j - 1] + 1, // insertion
-        dp[i - 1][j - 1] + cost // substitution (counted as deletion + insertion)
+        dp[i - 1][j - 1] + cost // substitution
       );
     }
   }
